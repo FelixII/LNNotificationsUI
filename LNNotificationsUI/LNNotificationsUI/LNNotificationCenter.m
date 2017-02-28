@@ -177,7 +177,7 @@ static NSString *const _LNSettingsKey = @"LNNotificationSettingsKey";
 	}
 }
 
-- (void)clearPendingNotificationForApplictionIdentifier:(NSString*)appIdentifier;
+- (void)clearPendingNotificationsForApplicationIdentifier:(NSString*)appIdentifier;
 {
 	[_pendingNotifications filterUsingPredicate:[NSPredicate predicateWithFormat:@"appIdentifier != %@", appIdentifier]];
 }
@@ -339,6 +339,7 @@ static NSString *const _LNSettingsKey = @"LNNotificationSettingsKey";
 {
 	[_currentAudioPlayer stop];
 	_currentAudioPlayer = nil;
+	[[AVAudioSession sharedInstance] setActive:NO withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:nil];
 }
 
 @end
